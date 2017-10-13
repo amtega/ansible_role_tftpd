@@ -1,0 +1,23 @@
+---
+# Role default lower priority variables
+
+# Root directory of shared files
+tftpd_root_directory: /var/lib/tftpboot
+
+# See tftp(8) man page for details on how to set the server arguments
+# http://linux.die.net/man/8/tftpd
+tftpd_server_args: "--secure --blocksize 1380 -v"
+
+# Changing this to 'yes' will disable TFTP, so you probably want to leave
+# this alone...
+tftpd_disable: "no"
+
+# User to run server
+tftpd_service_user: root
+
+# This specifies the maximum instances of this service per source IP address.
+# See man xinetd.conf(5) for details.
+tftpd_service_per_source: 11
+
+# Limits the rate of incoming connections. See man xinetd.conf(5) for details.
+tftpd_service_cps: "100 2"

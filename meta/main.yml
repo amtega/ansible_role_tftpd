@@ -1,0 +1,38 @@
+---
+# Role dependencies
+
+galaxy_info:
+  author: Juan Antonio Valiño García
+  description: Computer Science Engineer
+  company: Amtega - Xunta de Galicia
+  license: license not defined
+  min_ansible_version: 2.3
+  platforms:
+  - name: Fedora
+    versions:
+    - 26
+  - name: EL
+    versions:
+    - 6
+    - 7
+  galaxy_tags:
+    - networking
+    - system
+    - tftpd
+
+dependencies:
+  - role: xinetd_service
+    xinetd_service_name: "tftp"
+    xinetd_service_id: "tftp"
+    xinetd_service_package: "tftp-server"
+    xinetd_service_disable: "{{ tftpd_disable }}"
+    xinetd_service_socket_type: "dgram"
+    xinetd_service_protocol: "udp"
+    xinetd_service_wait: "yes"
+    xinetd_service_user: "{{ tftpd_service_user }}"
+    xinetd_service_server: "/usr/sbin/in.tftpd"
+    xinetd_service_server_args: >-
+      {{ tftpd_server_args }} {{ tftpd_root_directory }}
+    xinetd_service_per_source: "{{ tftpd_service_per_source }}"
+    xinetd_service_cps: "{{ tftpd_service_cps }}"
+    xinetd_service_flags: "IPv4"
