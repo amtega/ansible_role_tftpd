@@ -18,7 +18,7 @@
         name: tftp
         state: present
 
-    - name: create empty file in tftpd root
+    - name: create test file in tftpd root
       copy:
         content: "Hello World"
         dest: "{{ tftpd_root_directory }}/testfile1"
