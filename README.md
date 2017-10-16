@@ -49,4 +49,4 @@ Not defined.
 ## Author Information
 
 - Juan Antonio Valiño García ([juanval@edu.xunta.es](mailto:juanval@edu.xunta.es)). Amtega - Xunta de Galicia
-- This role is bases on based on [bertvv.tftp](https://galaxy.ansible.com/bertvv/tftp) role.
+- This role is based on [bertvv.tftp](https://galaxy.ansible.com/bertvv/tftp).

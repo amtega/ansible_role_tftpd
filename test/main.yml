@@ -1,17 +1,21 @@
 ---
 # Tasks for tesing role
 
-# - name: run idempotence test
-#   hosts: localhost
-#   roles:
-#     - role: docker_presets
-#     - role: docker_sandbox
-#       docker_sandbox_state: started
+- name: run idempotence test
+  hosts: localhost
+  roles:
+    - role: docker_presets
+    - role: docker_sandbox
+      docker_sandbox_state: started
 
 - name: test tftpd role
   hosts: docker_sandbox_containers
   roles:
     - tftpd
+  vars:
+    tftpd_testfile_dir: /tmp
+    tftpd_testfile_name: tftpd_testfile1
+
   tasks:
     - name: install tftp client
       package:
@@ -21,17 +25,23 @@
     - name: create test file in tftpd root
       copy:
         content: "Hello World"
-        dest: "{{ tftpd_root_directory }}/testfile1"
+        dest: "{{ tftpd_root_directory }}/{{ tftpd_testfile_name }}"
         force: yes
 
     - name: get test file using tftp client
-      command: "tftp {{ ansible_default_ipv4.address }} -c get testfile1"
+      command: >-
+        tftp {{ ansible_default_ipv4.address }}
+        -c
+        get {{ tftpd_testfile_name }}
+      args:
+        chdir: "{{ tftpd_testfile_dir }}"
+        creates: "{{ tftpd_testfile_dir }}/{{ tftpd_testfile_name }}"
 
   tags:
     - idempotence
-#
-# - name: cleanup docker docker sandbox
-#   hosts: localhost
-#   roles:
-#     - role: docker_sandbox
-#       docker_sandbox_state: absent
+
+- name: cleanup docker docker sandbox
+  hosts: localhost
+  roles:
+    - role: docker_sandbox
+      docker_sandbox_state: absent
