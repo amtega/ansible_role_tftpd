@@ -7,3 +7,4 @@
 ## 2017-10-16
 
 - Fixed bugs and tests.
+- Fixed errata in metadata.
