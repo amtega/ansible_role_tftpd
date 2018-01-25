@@ -3,24 +3,25 @@
 
 galaxy_info:
   author: Juan Antonio Valiño García
-  description: Computer Science Engineer
-  company: Amtega - Xunta de Galicia
-  license: license not defined
+  description: Setup tftpd
+  company: AMTEGA - Xunta de Galicia
+  license: GPLv3 or EUPL
   min_ansible_version: 2.4
   platforms:
   - name: Fedora
     versions:
-    - 26
+      - 26
+      - 27
   - name: EL
     versions:
-    - 6
-    - 7
+      - 6
+      - 7
   galaxy_tags:
     - networking
     - tftpd
 
 dependencies:
-  - role: xinetd_service
+  - role: amtega.xinetd_service
     xinetd_service_name: "tftp"
     xinetd_service_id: "tftp"
     xinetd_service_package: "tftp-server"

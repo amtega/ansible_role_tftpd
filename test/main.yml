@@ -4,14 +4,14 @@
 - name: run idempotence test
   hosts: localhost
   roles:
-    - role: docker_presets
-    - role: docker_sandbox
+    - role: amtega.docker_presets
+    - role: amtega.docker_sandbox
       docker_sandbox_state: started
 
 - name: test tftpd role
   hosts: docker_sandbox_containers
   roles:
-    - tftpd
+    - amtega.tftpd
   vars:
     tftpd_testfile_dir: /tmp
     tftpd_testfile_name: tftpd_testfile1
@@ -43,5 +43,5 @@
 - name: cleanup docker docker sandbox
   hosts: localhost
   roles:
-    - role: docker_sandbox
+    - role: amtega.docker_sandbox
       docker_sandbox_state: absent
