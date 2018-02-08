@@ -23,7 +23,7 @@ This is an example playbook:
 
 - hosts: all
   roles:
-    - tftpd
+    - amtega.tftpd
 ```
 
 ## Testing
@@ -31,14 +31,14 @@ This is an example playbook:
 Test are based on docker containers. You can run the tests with the following commands:
 
 ```shell
-$ cd tfptd/test
+$ cd amtega.tfptd/test
 $ ansible-playbook main.yml
 ```
 
 If you have docker engine configured you can avoid running dependant 'docker_engine' role (that usually requries root privileges) with the following commands:
 
 ```shell
-$ cd tfptd/test
+$ cd amtega.tfptd/test
 $ ansible-playbook --skip-tags "role::docker_engine" main.yml
 ```
 
