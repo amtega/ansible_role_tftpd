@@ -31,14 +31,14 @@ This is an example playbook:
 Test are based on docker containers. You can run the tests with the following commands:
 
 ```shell
-$ cd amtega.tfptd/test
+$ cd amtega.tfptd/tests
 $ ansible-playbook main.yml
 ```
 
 If you have docker engine configured you can avoid running dependant 'docker_engine' role (that usually requries root privileges) with the following commands:
 
 ```shell
-$ cd amtega.tfptd/test
+$ cd amtega.tfptd/tests
 $ ansible-playbook --skip-tags "role::docker_engine" main.yml
 ```
 
@@ -60,5 +60,5 @@ GNU General Public License for more details or European Union Public License for
 
 ## Author Information
 
-- Juan Antonio Valiño García
+- Juan Antonio Valiño García.
 - This role is based on [bertvv.tftp](https://galaxy.ansible.com/bertvv/tftp).
