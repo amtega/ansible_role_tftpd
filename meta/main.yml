@@ -2,6 +2,7 @@
 # Role dependencies
 
 galaxy_info:
+  role_name: tftpd
   author: Juan Antonio Valiño García
   description: Setup tftpd
   company: AMTEGA - Xunta de Galicia
