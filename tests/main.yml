@@ -5,8 +5,16 @@
   hosts: localhost
   roles:
     - role: amtega.docker_presets
+      docker_presets_images_json_query: >-
+        [? starts_with(name, `centos-6`)
+           || starts_with(name, `centos-7`)
+           || starts_with(name, `fedora-27`)
+           || starts_with(name, `fedora-28`) ]
+
     - role: amtega.docker_sandbox
       docker_sandbox_state: started
+  tags:
+    - sandbox
 
 - name: test tftpd role
   hosts: docker_sandbox_containers
@@ -36,7 +44,6 @@
       args:
         chdir: "{{ tftpd_testfile_dir }}"
         creates: "{{ tftpd_testfile_dir }}/{{ tftpd_testfile_name }}"
-
   tags:
     - idempotence
 
@@ -45,3 +52,6 @@
   roles:
     - role: amtega.docker_sandbox
       docker_sandbox_state: absent
+  tags:
+    - cleanup
+    - sandbox
