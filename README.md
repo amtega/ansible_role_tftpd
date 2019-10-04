@@ -1,4 +1,4 @@
-# Ansible sudo role
+# Ansible tftpd role
 
 This is an [Ansible](http://www.ansible.com) role to setup tftpd.
 
