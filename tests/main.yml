@@ -16,7 +16,7 @@
   tags:
     - sandbox
 
-- name: test tftpd role
+- name: Test tftpd role
   hosts: docker_sandbox_containers
   roles:
     - amtega.tftpd
@@ -25,18 +25,18 @@
     tftpd_testfile_name: tftpd_testfile1
 
   tasks:
-    - name: install tftp client
+    - name: Install tftp client
       package:
         name: tftp
         state: present
 
-    - name: create test file in tftpd root
+    - name: Create test file in tftpd root
       copy:
         content: "Hello World"
         dest: "{{ tftpd_root_directory }}/{{ tftpd_testfile_name }}"
         force: yes
 
-    - name: get test file using tftp client
+    - name: Get test file using tftp client
       command: >-
         tftp {{ ansible_default_ipv4.address }}
         -c
