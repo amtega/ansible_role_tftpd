@@ -1,0 +1,31 @@
+---
+
+- name: Converge
+  hosts: molecule_hosts
+  gather_facts: no
+  roles:
+    - amtega.tftpd
+  vars:
+    tftpd_testfile_dir: /tmp
+    tftpd_testfile_name: tftpd_testfile1
+
+  tasks:
+    - name: Install tftp client
+      package:
+        name: tftp
+        state: present
+
+    - name: Create test file in tftpd root
+      copy:
+        content: "Hello World"
+        dest: "{{ tftpd_root_directory }}/{{ tftpd_testfile_name }}"
+        force: yes
+
+    - name: Get test file using tftp client
+      command: >-
+        tftp {{ ansible_default_ipv4.address }}
+        -c
+        get {{ tftpd_testfile_name }}
+      args:
+        chdir: "{{ tftpd_testfile_dir }}"
+        creates: "{{ tftpd_testfile_dir }}/{{ tftpd_testfile_name }}"
