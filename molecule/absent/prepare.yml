@@ -1,0 +1,8 @@
+---
+
+- name: Prepare testing environment
+  hosts: molecule_hosts
+  roles:
+    - role: amtega.tftpd
+      vars:
+        tftpd_state: present

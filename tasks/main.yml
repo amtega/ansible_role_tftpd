@@ -1,2 +1,28 @@
 ---
 # Role tasks
+
+- block:
+    - block:
+        - name: Setup tftpd server args in systemd unit
+          lineinfile:
+            path: /usr/lib/systemd/system/tftp.service
+            regexp: '^ExecStart='
+            line: >-
+              ExecStart=/usr/sbin/in.tftpd
+              -s {{ tftpd_root_directory }}
+              {{ tftpd_server_args }}
+          register: tftpd_setup_sytemd_result
+
+        - name: Enable and start tftpd service
+          service:
+            name: tftp
+            enabled: yes
+            state: started
+      when: tftpd_state == "present"
+
+    - name: Reload systemd
+      systemd:
+        daemon_reload: yes
+      when: tftpd_setup_sytemd_result is changed
+  tags:
+    - role::tftpd
