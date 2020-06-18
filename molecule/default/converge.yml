@@ -1,7 +1,0 @@
----
-
-- name: Converge
-  hosts: molecule_hosts
-  gather_facts: no
-  roles:
-    - amtega.tftpd

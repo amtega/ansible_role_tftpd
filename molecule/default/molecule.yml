@@ -29,6 +29,7 @@ lint: |
 platforms:
   - name: "centos7-${INSTANCE_UUID:-1}"
     image: centos:7
+    dockerfile: ../resources/Dockerfile.j2
     command: /sbin/init
     tmpfs:
       - /run
@@ -39,6 +40,7 @@ platforms:
       - molecule_hosts
   - name: "fedora29-${INSTANCE_UUID:-1}"
     image: fedora:29
+    dockerfile: ../resources/Dockerfile.j2
     command: /sbin/init
     tmpfs:
       - /run
@@ -50,6 +52,7 @@ platforms:
       - molecule_hosts_fedora
   - name: "fedora30-${INSTANCE_UUID:-1}"
     image: fedora:30
+    dockerfile: ../resources/Dockerfile.j2
     command: /sbin/init
     tmpfs:
       - /run
@@ -61,6 +64,8 @@ platforms:
       - molecule_hosts_fedora
 provisioner:
   name: ansible
+  playbooks:
+    converge: ../resources/converge.yml
   inventory:
     hosts:
       molecule_hosts_fedora:

@@ -1,6 +1,6 @@
 ---
 
-- name: Prepare testing environment
+- name: Prepare
   hosts: molecule_hosts
   roles:
     - role: amtega.tftpd
