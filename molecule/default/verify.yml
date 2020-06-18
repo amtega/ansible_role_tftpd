@@ -1,14 +1,11 @@
 ---
 
-- name: Converge
+- name: Verify
   hosts: molecule_hosts
-  gather_facts: no
-  roles:
-    - amtega.tftpd
+  gather_facts: yes
   vars:
     tftpd_testfile_dir: /tmp
     tftpd_testfile_name: tftpd_testfile1
-
   tasks:
     - name: Install tftp client
       package:
@@ -18,7 +15,7 @@
     - name: Create test file in tftpd root
       copy:
         content: "Hello World"
-        dest: "{{ tftpd_root_directory }}/{{ tftpd_testfile_name }}"
+        dest: "/var/lib/tftpboot/{{ tftpd_testfile_name }}"
         force: yes
 
     - name: Get test file using tftp client
