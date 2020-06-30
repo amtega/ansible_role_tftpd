@@ -25,7 +25,7 @@ dependencies:
     check_platform_distributions:
       centos: 7
       fedora: 29
-      rhel: 7
+      redhat: 7
 
   - role: amtega.packages
     packages_os:
