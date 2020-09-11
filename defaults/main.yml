@@ -1,6 +1,10 @@
 ---
 # Role default lower priority variables
 
+# Can be present or absent
+
+tftpd_state: present
+
 # Root directory of shared files
 
 tftpd_root_directory: /var/lib/tftpboot
@@ -10,6 +14,12 @@ tftpd_root_directory: /var/lib/tftpboot
 
 tftpd_server_args: "--secure --blocksize 1380 -v"
 
-# Can be present or absent
+# List of hosts allowed to connect to the tftp server. See man hosts.allow(5)
+# for details
 
-tftpd_state: present
+tftpd_server_only_from: ["ALL"]
+
+# List of hosts denied to connect to the tftp server. See man hosts.deny(5) for
+# details
+
+tftpd_server_no_access: []
