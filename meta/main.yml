@@ -32,3 +32,16 @@ dependencies:
       all:
         all:
           tftp-server: "{{ tftpd_state }}"
+
+  - role: amtega.tcpwrappers
+    vars:
+      tcpwrappers_allow:
+        - daemons:
+            - in.tftpd
+          clients: "{{ tftpd_server_only_from }}"
+          state: present
+      tcpwrappers_deny:
+        - daemons:
+            - in.tftpd
+          clients: "{{ tftpd_server_no_access }}"
+          state: present
