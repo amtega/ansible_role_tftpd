@@ -14,15 +14,11 @@
           register: tftpd_setup_sytemd_result
 
         - name: Enable and start tftpd service
-          service:
+          systemd:
             name: tftp
             enabled: yes
             state: started
+            daemon_reload: yes
       when: tftpd_state == "present"
-
-    - name: Reload systemd
-      systemd:
-        daemon_reload: yes
-      when: tftpd_setup_sytemd_result is changed
   tags:
     - role::tftpd

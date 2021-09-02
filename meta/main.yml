@@ -3,19 +3,21 @@
 
 galaxy_info:
   role_name: tftpd
+  namespace: amtega
   author: Juan Antonio Valiño García
   description: Setup tftpd
   company: AMTEGA - Xunta de Galicia
   license: GPLv3 or EUPL
-  min_ansible_version: 2.9
+  min_ansible_version: 2.10
   platforms:
     - name: EL
       versions:
         - 7
+        - 8
     - name: Fedora
       versions:
-        - 29
-        - 30
+        - 33
+        - 35
   galaxy_tags:
     - networking
     - tftpd
@@ -24,7 +26,7 @@ dependencies:
   - role: amtega.check_platform
     check_platform_distributions:
       centos: 7
-      fedora: 29
+      fedora: 33
       redhat: 7
 
   - role: amtega.packages
