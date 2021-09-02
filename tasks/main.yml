@@ -17,8 +17,13 @@
           systemd:
             name: tftp
             enabled: yes
-            state: started
             daemon_reload: yes
+
+        - name: Enable and start tftp socket
+          systemd:
+            name: tftp.socket
+            enabled: yes
+            state: started
       when: tftpd_state == "present"
   tags:
     - role::tftpd
