@@ -14,7 +14,7 @@ driver:
   name: docker
 platforms:
   - name: "centos7-${INSTANCE_UUID:-1}"
-    image: centos:7
+    image: quay.io/centos/centos:centos7
     dockerfile: ../resources/Dockerfile.systemd.j2
     command: /sbin/init
     tmpfs:
@@ -25,7 +25,7 @@ platforms:
     groups:
       - molecule_hosts
   - name: "centos8-${INSTANCE_UUID:-1}"
-    image: centos:8
+    image: quay.io/centos/centos:stream8
     dockerfile: ../resources/Dockerfile.systemd.j2
     command: /sbin/init
     tmpfs:
@@ -35,8 +35,8 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     groups:
       - molecule_hosts
-  - name: "fedora33-${INSTANCE_UUID:-1}"
-    image: fedora:33
+  - name: "fedora34-${INSTANCE_UUID:-1}"
+    image: quay.io/fedora/fedora:34
     dockerfile: ../resources/Dockerfile.systemd.j2
     command: /sbin/init
     tmpfs:
@@ -47,8 +47,8 @@ platforms:
     groups:
       - molecule_hosts
       - molecule_hosts_fedora
-  - name: "fedora34-${INSTANCE_UUID:-1}"
-    image: fedora:34
+  - name: "fedora35-${INSTANCE_UUID:-1}"
+    image: quay.io/fedora/fedora:35
     dockerfile: ../resources/Dockerfile.systemd.j2
     command: /sbin/init
     tmpfs:
